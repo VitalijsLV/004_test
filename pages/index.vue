@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 	//import { ref, watch } from 'vue'
 	import { ref } from 'vue'
 	
@@ -20,6 +20,28 @@
 	})*/
 	
 	
+	
+	
+	let eventSource: EventSource | undefined;
+
+	function startSse() {
+	  eventSource = new EventSource('/api/sse3');
+
+	  eventSource.onmessage = (event) => {
+		console.log('Event received:', event.data);
+	  };
+
+	  eventSource.onerror = (error) => {
+		console.error('SSE error:', error);
+	  };
+	}
+
+	function cancelSse() {
+	  if (eventSource) {
+		console.log('Closing SSE connection');
+		eventSource.close();
+	  }
+	}
 	
 	
 	
@@ -117,6 +139,12 @@
 <template>
 	<div class="ddd">
 		<div style="display:flex; flex-flow:wrap row; border:2px dotted lightgreen;">
+			
+			<div>
+				<button @click="startSse">Start SSE</button>
+				<button @click="cancelSse">Cancel SSE</button>
+			  </div>
+			
 			
 			<div style="margin-right:4px;min-width:730px; display:flex; flex-flow:wrap row; border:4px dotted gray;">
 				<form method="POST" style="margin:20px;">

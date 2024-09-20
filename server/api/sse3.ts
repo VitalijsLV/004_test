@@ -1,5 +1,3 @@
-/*import { createEventStream } from '@nuxt/kit';
-
 export default defineEventHandler(async (event) => {
   const eventStream = createEventStream(event);
 
@@ -14,4 +12,4 @@ export default defineEventHandler(async (event) => {
   });
 
   return eventStream.send();
-});*/
+});
