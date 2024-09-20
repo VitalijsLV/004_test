@@ -16,7 +16,7 @@
 		background-color:rgba(50,240,50,0.6);
 	}
 	.custom-layout{
-		background-color:rgba(20,80,20,0.55);
+		background-color:pink;
 		padding:0 5px;
 	}
 </style>

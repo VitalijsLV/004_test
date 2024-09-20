@@ -115,7 +115,7 @@
 </script>
 
 <template>
-	<div>
+	<div class="ddd">
 		<div style="display:flex; flex-flow:wrap row; border:2px dotted lightgreen;">
 			
 			<div style="margin-right:4px;min-width:730px; display:flex; flex-flow:wrap row; border:4px dotted gray;">
@@ -263,6 +263,9 @@
 </template>
 
 <style scoped>
+	.ddd{
+		background-color:white;
+	}
 	.div-wrapper--sse_data__price{
 		display:flex;
 		flex-flow:wrap row;
