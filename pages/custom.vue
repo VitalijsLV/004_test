@@ -5,13 +5,16 @@
 </script>
 
 <template>
-	<div class="div_custom">
-		custom page with layout in layouts, in pages
+	<div class="custom-page">
+		<p>custom page</p>
 	</div>
+	<NuxtLayout>
+		<NuxtPage />
+	</NuxtLayout>
 </template>
 
 <style scoped>
-	.div_custom{
-		
+	.custom-page{
+		background-color:rgba(120,120,200,0.55);
 	}
 </style>
