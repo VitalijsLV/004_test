@@ -2,7 +2,8 @@
 	//import { ref, watch } from 'vue'
 	import { ref } from 'vue'
 	
-	/*const { status, data, close } = useEventSource('http://localhost:3000/api/sse', [], {
+	/*
+	const { status, data, close } = useEventSource('http://localhost:3000/api/sse', [], {
 		autoReconnect: true,
 	}) 
 	
@@ -17,15 +18,15 @@
 		sseDate.value = dataSSE.value.date
 		sseTime.value = dataSSE.value.time
 		sseTestManyPages.value = dataSSE.value.testManyPages
-	})*/
-	
+	})
+	*/
 	
 	
 	
 	let eventSource: EventSource | undefined;
 
 	function startSse() {
-	  eventSource = new EventSource('/api/sse3');
+	  eventSource = new EventSource('http://localhost:3000/api/sse3');
 
 	  eventSource.onmessage = (event) => {
 		console.log('Event received:', event.data);
@@ -42,6 +43,7 @@
 		eventSource.close();
 	  }
 	}
+	
 	
 	
 	
