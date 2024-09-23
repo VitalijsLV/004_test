@@ -154,11 +154,6 @@
 				
 				<br/><br/><br/>
 				
-				<button @click="submitForm1" style="margin:20px; display:flex; align-items:center; height:50px;">SubmitForm1</button>
-				<button @click="submit" style="margin:20px; display:flex; align-items:center; height:50px;">Submit</button>
-				
-				<br/><br/><br/>
-				
 				<div style="display:flex; flex-flow: wrap column;">
 					<p>Name: {{ resName ? resName : '--' }}</p>
 					<p>Surname: {{ resSurname ? resSurname : '--' }}</p>
