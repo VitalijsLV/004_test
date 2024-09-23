@@ -1,0 +1,1 @@
+{"test":345,"offer2":"3005","phone2":"28000434","domainBuyerName2":"buyer2"}{"test":345,"offer2":"777","phone2":"55","domainBuyerName2":"viv"}{"test":345,"offer2":"8","phone2":"12345","domainBuyerName2":"Thx"}

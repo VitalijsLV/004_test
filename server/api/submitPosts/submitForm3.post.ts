@@ -1,7 +1,7 @@
 import fs from 'fs'
 //import path from 'path'
 
-
+/*
 export default defineEventHandler(async (event) => {
 	if(event){
 		const body = await readBody(event)
@@ -45,6 +45,7 @@ export default defineEventHandler(async (event) => {
 		}
 	}
 })
+*/
 
 /*export default defineEventHandler(async (event) => {
 	if(event){
@@ -60,21 +61,37 @@ export default defineEventHandler(async (event) => {
 })
 */
 
-/*export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
 	if(event){
-		//const writeStream = fs.createWriteStream('write.txt', {flags: 'a'});
-		const writeStream = fs.createWriteStream('./write.txt');
-		const data = "Using streams to write data. 'Node and Nuxt'";
-		writeStream.write(data);
+		const body = await readBody(event)
+		const text = JSON.stringify(body)
+		//const writeStream = fs.createWriteStream('write.txt', text, 'Uint8Array')
 		
-		const body = await readBody(event)
+		//writeStream.write(text)
+		//writeStream.end()
+		//writeStream.on('open', () => {
+		//	writeStream.write(text)
+		//	writeStream.end()
+		//})
+		const w = fs.createWriteStream('server/api/submitPosts/file2.txt', {encoding: 'utf8', flags: 'a'})
+
+		w.on('open', () => {
+		  w.write(text)
+
+		  //process.nextTick(() => {
+			//w.write(text);
+			w.end()
+		  //})
+		})
+
+		
 		if(body.test > 100){
 			let fsLooking = fs
-			return {body, fsLooking: fsLooking, Yc: 'Jesus is the King of Glory'}
+			return {body, Yc: 'Jesus is the King of Glory'}
 		}
 		else{
 			return {Yb: 'Jesus is the King of Glory', x: 'body.test < 100', a:66 }
 		}
 	}
 })
-*/
+

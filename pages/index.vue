@@ -131,6 +131,34 @@
 			});
 	}
 	
+	
+	///////
+	
+	const offer2 = ref('')
+	const phone2 = ref('')
+	const domainBuyerName2 = ref('')
+	
+	let resOffer2 = ref('')
+	let resPhone2 = ref('')
+	let resDomainBuyerName2 = ref('')
+
+	async function submitForm3() {
+		const { body } = await $fetch('http://localhost:3000/api/submitPosts/submitForm3', {
+			method: 'post',
+			//body: { test: 345 }
+			body: { test: 345, offer2: offer2.value, phone2: phone2.value, domainBuyerName2: domainBuyerName2.value }
+		}).then(results => {
+			console.log(results)
+				resOffer2.value = results.body.offer2
+				resPhone2.value = results.body.phone2
+				resDomainBuyerName2.value = results.body.domainBuyerName2
+			return results
+			})
+			.catch(error => {
+				console.log(error)
+			});
+	}
+	
 </script>
 
 <template>
@@ -182,6 +210,32 @@
 					<p>offer: {{ resOffer ? resOffer : '--' }}</p>
 					<p>Phone: {{ resPhone ? resPhone : '--' }}</p>
 					<p>Name: {{ resDomainBuyerName ? resDomainBuyerName : '--' }}</p>
+				</div>
+				
+			</div>
+			
+			
+			<div style="display:flex; flex-flow:wrap row; flex:1 0 auto; border:4px dotted lightblue;">
+			
+				<form method="POST" style="margin:10px;">
+					<input type="text" v-model="offer2" placeholder="Your price offer"/><br/>
+					<br/>
+					<input type="text" v-model="phone2" placeholder="Your phone number"/><br/>
+					<br/>
+					<input type="text" v-model="domainBuyerName2" placeholder="Your Name"/><br/>
+					<input @click.prevent="submitForm3" type="submit" value="Nosūtīt"/>
+				</form>
+				
+				
+				<br/><br/><br/>
+				
+				
+				<br/><br/><br/>
+				
+				<div style="display:flex; flex-flow: wrap column;">
+					<p>offer2: {{ resOffer2 ? resOffer2 : '--' }}</p>
+					<p>Phone2: {{ resPhone2 ? resPhone2 : '--' }}</p>
+					<p>Name2: {{ resDomainBuyerName2 ? resDomainBuyerName2 : '--' }}</p>
 				</div>
 				
 			</div>
