@@ -2,11 +2,8 @@
 	//import { ref, watch } from 'vue'
 	import { ref } from 'vue'
 	
-	/*
-	const { status, data, close } = useEventSource('http://localhost:3000/api/sse', [], {
-		autoReconnect: true,
-	}) 
 	
+	/*
 	const dataSSE = ref('')
 	const sseDate = ref('--')
 	const sseTime = ref('--')
@@ -26,16 +23,18 @@
 	let eventSource: EventSource | undefined;
 
 	function startSse() {
-	  eventSource = new EventSource('http://localhost:3000/api/sse3');
+	  //if(!eventSource){
+		  eventSource = new EventSource('http://localhost:3000/api/sse3');
 
-	  eventSource.onmessage = (event) => {
-		console.log('Event received:', event.data);
-	  };
+		  eventSource.onmessage = (event) => {
+			console.log('Event received:', event.data);
+		  };
 
-	  eventSource.onerror = (error) => {
-		console.error('SSE error:', error);
+		  eventSource.onerror = (error) => {
+			console.error('SSE error:', error);
+		  };
 	  };
-	}
+	//}
 
 	function cancelSse() {
 	  if (eventSource) {
@@ -119,12 +118,7 @@
 		const { body } = await $fetch('http://localhost:3000/api/submitPosts/submitForm2', {
 			method: 'post',
 			//body: { test: 234 }
-			body: { 
-				test: 234, 
-				offer: offer.value, 
-				phone: phone.value, 
-				domainBuyerName: domainBuyerName.value,
-			}
+			body: { test: 234, offer: offer.value, phone: phone.value, domainBuyerName: domainBuyerName.value }
 		}).then(results => {
 			console.log(results)
 				resOffer.value = results.body.offer
@@ -136,6 +130,7 @@
 				console.log(error)
 			});
 	}
+	
 </script>
 
 <template>
