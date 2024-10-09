@@ -19,7 +19,8 @@
 </template>
 
 
-<style scoped>
+<style >
+	body{background-color:red}
 	.wr{
 		padding:0 5px;
 	}

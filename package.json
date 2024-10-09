@@ -9,9 +9,15 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
+  "overrides": {
+    "vue": "latest"
+  },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.4",
     "git": "^0.1.5",
     "nuxt": "^3.13.2",
+    "pinia": "^2.2.2",
+    "pnpm": "^9.11.0",
     "vue": "latest",
     "vue-router": "latest"
   },

@@ -162,7 +162,7 @@
 </script>
 
 <template>
-	<div class="ddd">
+	<div class="app-index-div">
 		<div style="display:flex; flex-flow:wrap row; border:2px dotted lightgreen;">
 			
 			<div>
@@ -337,7 +337,7 @@
 </template>
 
 <style scoped>
-	.ddd{
+	.app-index-div{
 		background-color:white;
 	}
 	.div-wrapper--sse_data__price{
