@@ -3,6 +3,9 @@
 	import { ref } from 'vue'
 	
 	
+	const apiTest = await $fetch('/api/testServer')
+	console.log(apiTest)
+	
 	/*
 	const dataSSE = ref('')
 	const sseDate = ref('--')
