@@ -5,13 +5,11 @@
 
 <template>
   <div>
-	<!--<NuxtLayout />-->
 	<NuxtPage />
   </div>
 </template>
 
 
-<!--<style lang="scss">-->
 <style>
 	html, body{
 		box-sizing:border-box;
@@ -20,7 +18,4 @@
 		width:100%;
 		height:100%;
 	}
-	/*body{
-		background-color:red;
-	}*/
 </style>

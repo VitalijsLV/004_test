@@ -1,7 +1,8 @@
 import os from 'os'
+import path from 'path'
 
 export default defineEventHandler(async (event) => {
-	console.log('777')
+	console.log(path)
 	return {
 		test1: 'test1',
 		osArch: os.arch(),
