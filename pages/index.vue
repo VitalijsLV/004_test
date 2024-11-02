@@ -22,11 +22,14 @@
 	*/
 	
 	
+	let functionIsRunnng = false;
 	
-	let eventSource: EventSource | undefined;
+	let eventSource;
+	//let eventSource: EventSource | undefined;
 
 	function startSse() {
 	  //if(!eventSource){
+	    if(functionIsRunnng === false){
 		  eventSource = new EventSource('http://localhost:3000/api/sse3');
 
 		  eventSource.onmessage = (event) => {
@@ -36,14 +39,19 @@
 		  eventSource.onerror = (error) => {
 			console.error('SSE error:', error);
 		  };
-	  };
-	//}
+		  functionIsRunnng = !functionIsRunnng;
+		};
+	  //};
+	};
 
 	function cancelSse() {
-	  if (eventSource) {
-		console.log('Closing SSE connection');
-		eventSource.close();
-	  }
+		if(functionIsRunnng === true){
+			if (eventSource) {
+			console.log('Closing SSE connection');
+			eventSource.close();
+			}
+			functionIsRunnng = !functionIsRunnng;
+		}
 	}
 	
 	
@@ -336,6 +344,43 @@
 		<br/>
 		
 		<MyProgressDiv />
+		
+		
+		<div style="display:flex;">
+			<div style="font-family:sans-serif; display:flex; flex-flow:wrap column; margin:50px 70px; padding:10px 25px; border:2px solid green; font-size:19px;">
+				<section style="font-size:17px;">
+					<p>
+						Vitālijs Lavrinovičs, 
+						<br>36 gadi, 
+						<br>dzīvesvieta: Olaine,  
+						<br>valodu zināšanas: latviešu un krievu brīvi, angļu vāji,
+						<br>e-pasts: vitalijam@inbox.lv, 
+						<br>tālrunis: 25313925.
+					</p>
+				</section>
+				<hr style="width:95%;">
+				<section>
+					<p style="font-size:17px;">Bez pieredzes algotā darbā.</p>  
+					<i><p>Sakarā ar miega problēmām, interesē darbs ar slīdošu jeb stingri nenoteiktu darba laika grafiku.</p></i> 
+				</section>
+				<section style="font-weight:bold;">
+					<p>Pašmācības ceļā apgūts: Html, Css, JavaScript vanilla. <br> 
+					Ir pamata zināšanas strādājot ar Node, Vue, Nuxt, cmd, Git, GitHub.</p> 
+				</section>
+				<section>
+					<p>Mācos un papildinu savas zināšanas iekš: Node, Vue, Nuxt, Docker, Deploy, JWT, SSE, Auth, WS utt.</p> 
+				</section>
+				<section>
+					<p>Plānoju apgūt Postgresql, Kubernetes.</p> 
+				</section>
+				<section style="color:gray;">
+					<p>Bija neliela pieredze strādājot ar PSD, Figma, Gimp2, MySql.</p>  
+					<p>Tāpat neliela pieredze bija strādājot ar Php(taču izvēlējos mācīties Node; varbūt vēlāk kaut kad Php vēl iemācīšos, bet ne tagad).</p>
+				</section>
+			</div>
+		</div>
+		
+		
 	</div>
 </template>
 
