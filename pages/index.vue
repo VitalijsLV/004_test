@@ -1,11 +1,12 @@
-<script setup>
+<script setup lang="ts">
 	//import { ref, watch } from 'vue'
 	import { ref } from 'vue'
 	
-	/*const { status, data, close } = useEventSource('http://localhost:3000/api/sse', [], {
-		autoReconnect: true,
-	}) 
 	
+	const apiTest = await $fetch('/api/testServer')
+	console.log(apiTest)
+	
+	/*
 	const dataSSE = ref('')
 	const sseDate = ref('--')
 	const sseTime = ref('--')
@@ -17,8 +18,41 @@
 		sseDate.value = dataSSE.value.date
 		sseTime.value = dataSSE.value.time
 		sseTestManyPages.value = dataSSE.value.testManyPages
-	})*/
+	})
+	*/
 	
+	
+	let functionIsRunnng = false;
+	
+	let eventSource;
+	//let eventSource: EventSource | undefined;
+
+	function startSse() {
+	  //if(!eventSource){
+	    if(functionIsRunnng === false){
+		  eventSource = new EventSource('http://localhost:3000/api/sse3');
+
+		  eventSource.onmessage = (event) => {
+			console.log('Event received:', event.data);
+		  };
+
+		  eventSource.onerror = (error) => {
+			console.error('SSE error:', error);
+		  };
+		  functionIsRunnng = !functionIsRunnng;
+		};
+	  //};
+	};
+
+	function cancelSse() {
+		if(functionIsRunnng === true){
+			if (eventSource) {
+			console.log('Closing SSE connection');
+			eventSource.close();
+			}
+			functionIsRunnng = !functionIsRunnng;
+		}
+	}
 	
 	
 	
@@ -95,12 +129,7 @@
 		const { body } = await $fetch('http://localhost:3000/api/submitPosts/submitForm2', {
 			method: 'post',
 			//body: { test: 234 }
-			body: { 
-				test: 234, 
-				offer: offer.value, 
-				phone: phone.value, 
-				domainBuyerName: domainBuyerName.value,
-			}
+			body: { test: 234, offer: offer.value, phone: phone.value, domainBuyerName: domainBuyerName.value }
 		}).then(results => {
 			console.log(results)
 				resOffer.value = results.body.offer
@@ -112,11 +141,46 @@
 				console.log(error)
 			});
 	}
+	
+	
+	///////
+	
+	const offer2 = ref('')
+	const phone2 = ref('')
+	const domainBuyerName2 = ref('')
+	
+	let resOffer2 = ref('')
+	let resPhone2 = ref('')
+	let resDomainBuyerName2 = ref('')
+
+	async function submitForm3() {
+		const { body } = await $fetch('http://localhost:3000/api/submitPosts/submitForm3', {
+			method: 'post',
+			//body: { test: 345 }
+			body: { test: 345, offer2: offer2.value, phone2: phone2.value, domainBuyerName2: domainBuyerName2.value }
+		}).then(results => {
+			console.log(results)
+				resOffer2.value = results.body.offer2
+				resPhone2.value = results.body.phone2
+				resDomainBuyerName2.value = results.body.domainBuyerName2
+			return results
+			})
+			.catch(error => {
+				console.log(error)
+			});
+	}
+	
 </script>
 
 <template>
-	<div>
+	<div class="app-index-div">
 		<div style="display:flex; flex-flow:wrap row; border:2px dotted lightgreen;">
+			
+			<div>
+				<button @click="startSse">Start SSE</button>
+				<button @click="cancelSse">Cancel SSE</button>
+			  </div>
+			
 			
 			<div style="margin-right:4px;min-width:730px; display:flex; flex-flow:wrap row; border:4px dotted gray;">
 				<form method="POST" style="margin:20px;">
@@ -126,11 +190,6 @@
 					<input type="text" id="lname" v-model="surname" placeholder="Godis"/><br/><br/>
 						<input @click.prevent="submitForm1" type="submit" value="Nosūtīt"/>
 				</form>
-				
-				<br/><br/><br/>
-				
-				<button @click="submitForm1" style="margin:20px; display:flex; align-items:center; height:50px;">SubmitForm1</button>
-				<button @click="submit" style="margin:20px; display:flex; align-items:center; height:50px;">Submit</button>
 				
 				<br/><br/><br/>
 				
@@ -162,6 +221,32 @@
 					<p>offer: {{ resOffer ? resOffer : '--' }}</p>
 					<p>Phone: {{ resPhone ? resPhone : '--' }}</p>
 					<p>Name: {{ resDomainBuyerName ? resDomainBuyerName : '--' }}</p>
+				</div>
+				
+			</div>
+			
+			
+			<div style="display:flex; flex-flow:wrap row; flex:1 0 auto; border:4px dotted lightblue;">
+			
+				<form method="POST" style="margin:10px;">
+					<input type="text" v-model="offer2" placeholder="Your price offer"/><br/>
+					<br/>
+					<input type="text" v-model="phone2" placeholder="Your phone number"/><br/>
+					<br/>
+					<input type="text" v-model="domainBuyerName2" placeholder="Your Name"/><br/>
+					<input @click.prevent="submitForm3" type="submit" value="Nosūtīt"/>
+				</form>
+				
+				
+				<br/><br/><br/>
+				
+				
+				<br/><br/><br/>
+				
+				<div style="display:flex; flex-flow: wrap column;">
+					<p>offer2: {{ resOffer2 ? resOffer2 : '--' }}</p>
+					<p>Phone2: {{ resPhone2 ? resPhone2 : '--' }}</p>
+					<p>Name2: {{ resDomainBuyerName2 ? resDomainBuyerName2 : '--' }}</p>
 				</div>
 				
 			</div>
@@ -259,10 +344,50 @@
 		<br/>
 		
 		<MyProgressDiv />
+		
+		
+		<div style="display:flex;">
+			<div style="font-family:sans-serif; display:flex; flex-flow:wrap column; margin:50px 70px; padding:10px 25px; border:2px solid green; font-size:19px;">
+				<section style="font-size:17px;">
+					<p>
+						Vitālijs Lavrinovičs, 
+						<br>36 gadi, 
+						<br>dzīvesvieta: Olaine,  
+						<br>valodu zināšanas: latviešu un krievu brīvi, angļu vāji,
+						<br>e-pasts: vitalijam@inbox.lv, 
+						<br>tālrunis: 25313925.
+					</p>
+				</section>
+				<hr style="width:95%;">
+				<section>
+					<p style="font-size:17px;">Bez pieredzes algotā darbā.</p>  
+					<i><p>Sakarā ar miega problēmām, interesē darbs ar slīdošu jeb stingri nenoteiktu darba laika grafiku.</p></i> 
+				</section>
+				<section style="font-weight:bold;">
+					<p>Pašmācības ceļā apgūts: Html, Css, JavaScript vanilla. <br> 
+					Ir pamata zināšanas strādājot ar Node, Vue, Nuxt, cmd, Git, GitHub.</p> 
+				</section>
+				<section>
+					<p>Mācos un papildinu savas zināšanas iekš: Node, Vue, Nuxt, Docker, Deploy, JWT, SSE, Auth, WS utt.</p> 
+				</section>
+				<section>
+					<p>Plānoju apgūt Postgresql, Kubernetes.</p> 
+				</section>
+				<section style="color:gray;">
+					<p>Bija neliela pieredze strādājot ar PSD, Figma, Gimp2, MySql.</p>  
+					<p>Tāpat neliela pieredze bija strādājot ar Php(taču izvēlējos mācīties Node; varbūt vēlāk kaut kad Php vēl iemācīšos, bet ne tagad).</p>
+				</section>
+			</div>
+		</div>
+		
+		
 	</div>
 </template>
 
 <style scoped>
+	.app-index-div{
+		background-color:white;
+	}
 	.div-wrapper--sse_data__price{
 		display:flex;
 		flex-flow:wrap row;

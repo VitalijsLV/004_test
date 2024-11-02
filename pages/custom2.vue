@@ -1,6 +1,6 @@
 <script setup>
 	definePageMeta({
-		layout: "custom",
+		layout: "custom2",
 	})
 </script>
 
@@ -8,13 +8,13 @@
 	<NuxtLayout>
 		<NuxtPage />
 	</NuxtLayout>
-	<div class="custom-page">
-		<p>custom page</p>
+	<div class="custom2-page">
+		<p>custom2 page</p>
 	</div>
 </template>
 
 <style scoped>
-	.custom-page{
-		background-color:rgba(120,120,200,0.75);
+	.custom2-page{
+		background-color:rgba(120,40,40,0.75);
 	}
 </style>

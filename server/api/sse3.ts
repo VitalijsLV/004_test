@@ -1,17 +1,15 @@
-/*import { createEventStream } from '@nuxt/kit';
-
 export default defineEventHandler(async (event) => {
   const eventStream = createEventStream(event);
 
-  // Send a message every second
+  let st_count = 0;
   const interval = setInterval(async () => {
-    await eventStream.push('Hello world');
+    await eventStream.push('Hello world '+ st_count+'');
+	st_count++
   }, 1000);
 
-  // Cleanup the interval when the connection is terminated or the writer is closed
   eventStream.onClosed(() => {
     clearInterval(interval);
   });
 
   return eventStream.send();
-});*/
+});
