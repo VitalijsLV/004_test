@@ -1,5 +1,5 @@
 {
-  "name": "project001",
+  "name": "learn001",
   "private": true,
   "type": "module",
   "scripts": {
@@ -26,7 +26,7 @@
   "main": "app.vue",
   "repository": {
     "type": "git",
-    "url": "fullstackProject001Start"
+    "url": ""
   },
   "author": "V.L.",
   "license": "ISC"

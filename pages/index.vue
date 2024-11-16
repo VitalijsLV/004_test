@@ -179,7 +179,16 @@
 			<div>
 				<button @click="startSse">Start SSE</button>
 				<button @click="cancelSse">Cancel SSE</button>
-			  </div>
+				
+				<ul 
+					style="display:flex; flew-flow:wrap column; margin:10px; color:rgba(200,100,20,0.75);"
+					v-for="one in apiTest" :key="one"
+				>
+					<li>
+						{{ one }}
+					</li>
+				</ul>
+			</div>
 			
 			
 			<div style="margin-right:4px;min-width:730px; display:flex; flex-flow:wrap row; border:4px dotted gray;">
@@ -378,6 +387,14 @@
 					<p>Tāpat neliela pieredze bija strādājot ar Php(taču izvēlējos mācīties Node; varbūt vēlāk kaut kad Php vēl iemācīšos, bet ne tagad).</p>
 				</section>
 			</div>
+		</div>
+		
+		
+		<div style="display:flex; margin:30px 100px; border:2px solid yellow; background-color:rgba(130,130,90,0.27);">
+			<p>
+				Даже сатана использовал Священное Писание, и даже против самого Господа Иисуса. 
+По этому я хочу напомнить всем: "Проверяйте всё, от Бога ли это.", "По Его ли воле это?", "Бог свят", "Бог есть Дух", "Бог есть Любовь", и еще: "любовь ближнему не причиняет зла; [Библия,Римлянам13глава10стих]".
+			</p>
 		</div>
 		
 		

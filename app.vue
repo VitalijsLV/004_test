@@ -1,5 +1,7 @@
 <script setup>
-	
+	useHead({
+	  title: 'Dāvanu zona'
+	})
 </script>
 
 
