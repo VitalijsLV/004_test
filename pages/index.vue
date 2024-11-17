@@ -180,6 +180,15 @@
 				<button @click="startSse">Start SSE</button>
 				<button @click="cancelSse">Cancel SSE</button>
 				
+				
+				<ul 
+					style="display:flex; flew-flow:wrap column; margin:10px; color:rgba(20,100,220,0.75);"
+				>
+					<li>
+						this is a local routing: localhost:3000
+					</li>
+				</ul>
+				
 				<ul 
 					style="display:flex; flew-flow:wrap column; margin:10px; color:rgba(200,100,20,0.75);"
 					v-for="one in apiTest" :key="one"
