@@ -7,12 +7,13 @@ export default defineEventHandler(async (event) => {
 	// setHeader(event, 'content-type', 'application/json')
 	
 	
-	if(event.context.params.many === '3'){
+	// if(event.context.params.parameters === '3'){
+	if(event.context.params.parameters){
 		// return { "it is": 1 }
-		return '<div><p style=\"color:red;\">Test text, 3 </p></div>' 
+		return `<div style=\"width:205px;background-color:yellow;"><p style=\"color:red;\">Test text. api GET route '${event.context.params.parameters}' </p></div>` 
 	}
 	
-	const many = event.context.params.many
+	const many = event.context.params.parameters
 	// Do what you need to do with the id
 	
 	
