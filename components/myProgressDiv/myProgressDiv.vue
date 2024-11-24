@@ -19,6 +19,7 @@
 			<p>Nuxt3</p>
 			<p>SSE</p>
 			<p>SSR</p>
+			<p>Node</p>
 			<p>other</p>
 		</div>
 		<div class="learnDiv b">
@@ -39,16 +40,15 @@
 			<p>Auth...</p>
 			<p>ssh</p>
 			<p>Hosting</p>
+			<p>VPS</p>
+			<p>Deploy</p>
 			<p>other</p>
 		</div>
 		<div class="learnDiv c">
-			<p>Docker</p>
 			<p>Kubernetes</p>
 			<p>Postgresql</p>
 			<p>Deploy</p>
 			<p>VPS</p>
-			<p>Hosting</p>
-			<p>JWT</p>
 			<p>Auth...</p>
 			<p>Payment</p>
 			<p>other</p>

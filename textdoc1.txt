@@ -1,1 +1,1 @@
-Hello, this is a test text document. Jesus is Lord, and it is the truth.
+Text doc. Jesus is Lord, and it is the truth.
