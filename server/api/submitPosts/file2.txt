@@ -1,1 +1,0 @@
-{"test":345,"offer2":"11500","phone2":"800","domainBuyerName2":"Gafi"}

@@ -5,6 +5,7 @@ import path from 'path'
 
 export default defineEventHandler(async (event) => {
 	if(event){
+	// check event's body data  
 		const body = await readBody(event)
 		const text = JSON.stringify(body)
 		const w = fs.createWriteStream(path.resolve('server', 'api', 'submitPosts', 'file2.txt'), {encoding: 'utf8', flags: 'a'})
@@ -17,15 +18,6 @@ export default defineEventHandler(async (event) => {
 			w.end()
 		  //})
 		})
-
-		
-		if(body.test > 100){
-			let fsLooking = fs
-			return {body, Yc: 'Jesus is the King of Glory'}
-		}
-		else{
-			return {Yb: 'Jesus is the King of Glory', x: 'body.test < 100', a:66 }
-		}
 	}
 })
 

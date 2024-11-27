@@ -6,8 +6,8 @@ import os from 'os'
 
 
 export default defineEventHandler(async (event) => {
-	
-	let xx;
+	if(event){console.log(6)}
+	// read file and work with it
 	let fileData = fs.readFileSync(path.resolve("textdoc1.txt"), "utf8", (err, data) => {
 		if(err){
 			console.error("X Error reading file: ", err)
@@ -15,23 +15,42 @@ export default defineEventHandler(async (event) => {
 		}
 	})
 	
-	const regEx = /\w+/g
-	xx = fileData.match(regEx)
-	console.log(xx)
+	console.log(fileData)
 	
+	const regEx = /\w+/g
+	let xx = fileData.match(regEx)
+	let xx_splice = xx.splice(0, 5).splice(2, 5)
+	console.log(xx_splice)
+	
+	
+	//read [POST] file and work with it
+	let filePostData = fs.readFileSync(path.resolve("server", "api", "submitPosts", "file2.txt"), "utf8", (err, data) => {
+		if(err){
+			console.error("X Error reading file: ", err)
+			return
+		}
+		//console.log(data)
+	})
+	if(!filePostData){
+		console.log(filePostData)
+		console.log('\'filePostData\' file data is empty, or file doesn\'t exist!')
+	}
+	
+	let fileDataParse = null;
+	if(filePostData){
+		fileDataParse = JSON.parse(filePostData)
+	}
 	
 	return {
-		a:1,
-		DATA_FROM_FILE: xx,
+		DATA_FROM_FILE: fileData,
+		DATA_FROM_FILE_regexed_spliced: xx_splice,
+		//DATA_FROM_FILE_data_from_POST: fileDataParse,
 		is: '\$fetch(\'/api/testServer\')',
 		"server route": 'server/api/testServer.ts',
 		api: "api works!",
 		event: event,
 		newData: 'your new data or [POST] here',
-		".": '~~~',
-		"..": '~~~',
-		"...": '~~~',
-		"....": '~~~',
-		".....": '~~~',
 	}
+	
+	
 })

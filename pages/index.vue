@@ -85,10 +85,10 @@
 	let aprakstsValue2 = `Продукт1 олвпо лпоук пуодл кппуд. Продукт2 олвпо лпоук пуодл кппуд. Продукт3 олвпо лпоук пуодл кппуд. Продукт4 олвпо лпоук пуодл кппуд. Продукт5 олвпо лпоук пуодл кппуд.`
 	
 	const fakeApiDatax3 = ref({
-		Описание: aprakstsValue2,
-		null: null,
-		Количество: 5,
-		Цена: '555$',
+		xxx0: aprakstsValue2,
+		xxx1: 'nullx',
+		xxx2: 5,
+		xxx3: '555$',
 	})
 	
 	
@@ -157,7 +157,12 @@
 		const { body } = await $fetch('http://localhost:3000/api/submitPosts/submitForm3', {
 			method: 'post',
 			//body: { test: 345 }
-			body: { test: 345, offer2: offer2.value, phone2: phone2.value, domainBuyerName2: domainBuyerName2.value }
+			body: {
+				id: Math.random() * (1000 - 50) + 50, 
+				offer2: offer2.value, 
+				phone2: phone2.value, 
+				domainBuyerName2: domainBuyerName2.value, 
+			} 
 		}).then(results => {
 			console.log(results)
 				resOffer2.value = results.body.offer2
