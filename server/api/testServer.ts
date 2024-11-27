@@ -6,7 +6,7 @@ import os from 'os'
 
 
 export default defineEventHandler(async (event) => {
-	if(event){console.log(6)}
+	
 	// read file and work with it
 	let fileData = fs.readFileSync(path.resolve("textdoc1.txt"), "utf8", (err, data) => {
 		if(err){
@@ -29,17 +29,11 @@ export default defineEventHandler(async (event) => {
 			console.error("X Error reading file: ", err)
 			return
 		}
-		//console.log(data)
+		console.log(data)
 	})
-	if(!filePostData){
-		console.log(filePostData)
-		console.log('\'filePostData\' file data is empty, or file doesn\'t exist!')
-	}
 	
-	let fileDataParse = null;
-	if(filePostData){
-		fileDataParse = JSON.parse(filePostData)
-	}
+	let fileDataParse = JSON.parse(filePostData)
+	console.log(fileDataParse)
 	
 	return {
 		DATA_FROM_FILE: fileData,
@@ -49,7 +43,7 @@ export default defineEventHandler(async (event) => {
 		"server route": 'server/api/testServer.ts',
 		api: "api works!",
 		event: event,
-		newData: 'your new data or [POST] here',
+		newData: 'your new data or [POST] here'
 	}
 	
 	

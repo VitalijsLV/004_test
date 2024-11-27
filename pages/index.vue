@@ -154,14 +154,15 @@
 	let resDomainBuyerName2 = ref('')
 
 	async function submitForm3() {
+		let idValue = Math.random() * (10 - 1) + 1
 		const { body } = await $fetch('http://localhost:3000/api/submitPosts/submitForm3', {
 			method: 'post',
 			//body: { test: 345 }
 			body: {
-				id: Math.random() * (1000 - 50) + 50, 
+				id: idValue, 
 				offer2: offer2.value, 
 				phone2: phone2.value, 
-				domainBuyerName2: domainBuyerName2.value, 
+				domainBuyerName2: domainBuyerName2.value 
 			} 
 		}).then(results => {
 			console.log(results)
