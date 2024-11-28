@@ -3,8 +3,9 @@
 	import { ref } from 'vue'
 	
 	
-	const apiTest = await $fetch('/api/testServer')
-	console.log(apiTest)
+	//const apiTest = await $fetch('/api/testServer')
+	//console.log(apiTest)
+	
 	
 	/*
 	const dataSSE = ref('')
@@ -100,14 +101,14 @@
 	let resSurname = ref('')
 
 	async function submitForm1() {
-		const { body } = await $fetch('http://localhost:3000/api/submitPosts/submitForm1', {
+		const { body1 } = await $fetch('http://localhost:3000/api/submitPosts/submitForm1', {
 			method: 'post',
-			//body: { test: 123 }
-			body: { test: 123, name: name.value, surname: surname.value }
+			//body1: { test: 123 }
+			body1: { test: 123, name: name.value, surname: surname.value }
 		}).then(results => {
 			console.log(results)
-				resName.value = results.body.name
-				resSurname.value = results.body.surname
+				resName.value = results.body1.name
+				resSurname.value = results.body1.surname
 			return results
 			})
 			.catch(error => {
@@ -126,14 +127,14 @@
 	let resDomainBuyerName = ref('')
 
 	async function submitForm2() {
-		const { body } = await $fetch('http://localhost:3000/api/submitPosts/submitForm2', {
+		const { body2 } = await $fetch('http://localhost:3000/api/submitPosts/submitForm2', {
 			method: 'post',
-			//body: { test: 234 }
-			body: { test: 234, offer: offer.value, phone: phone.value, domainBuyerName: domainBuyerName.value }
+			//body2: { test: 234 }
+			body2: { test: 234, offer: offer.value, phone: phone.value, domainBuyerName: domainBuyerName.value }
 		}).then(results => {
 			console.log(results)
-				resOffer.value = results.body.offer
-				resPhone.value = results.body.phone
+				resOffer.value = results.body2.offer
+				resPhone.value = results.body2.phone
 				resDomainBuyerName.value = results.body.domainBuyerName
 			return results
 			})
@@ -155,25 +156,11 @@
 
 	async function submitForm3() {
 		let idValue = Math.random() * (10 - 1) + 1
-		const { body } = await $fetch('http://localhost:3000/api/submitPosts/submitForm3', {
+		//const { data } = await $fetch('http://localhost:3000/api/submitPosts/submitForm3', {
+		const data = await $fetch('http://localhost:3000/api/submitPosts/submitForm3', {
 			method: 'post',
-			//body: { test: 345 }
-			body: {
-				id: idValue, 
-				offer2: offer2.value, 
-				phone2: phone2.value, 
-				domainBuyerName2: domainBuyerName2.value 
-			} 
-		}).then(results => {
-			console.log(results)
-				resOffer2.value = results.body.offer2
-				resPhone2.value = results.body.phone2
-				resDomainBuyerName2.value = results.body.domainBuyerName2
-			return results
-			})
-			.catch(error => {
-				console.log(error)
-			});
+			body: { id: idValue, offer2: offer2.value, phone2: phone2.value, domainBuyerName2: domainBuyerName2.value } 
+		})
 	}
 	
 </script>
@@ -195,14 +182,14 @@
 					</li>
 				</ul>
 				
-				<ul 
+				<!--<ul 
 					style="display:flex; flew-flow:wrap column; margin:10px; color:rgba(200,100,20,0.75);"
 					v-for="one in apiTest" :key="one"
 				>
 					<li>
 						{{ one }}
 					</li>
-				</ul>
+				</ul>-->
 			</div>
 			
 			
@@ -279,6 +266,7 @@
 		
 		
 		<div style="display:flex; flex-flow:wrap row; align-items:center; justify-content:space-between;">
+			
 			<!--<SseDate />
 			
 			<SseTimeNow />-->
