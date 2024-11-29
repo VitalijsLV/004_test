@@ -3,7 +3,7 @@
 	import { ref } from 'vue'
 	
 	
-	//const apiTest = await $fetch('/api/testServer')
+	const apiTest = await $fetch('/api/testServer')
 	//console.log(apiTest)
 	
 	
@@ -187,14 +187,14 @@
 					</li>
 				</ul>
 				
-				<!--<ul 
+				<ul 
 					style="display:flex; flew-flow:wrap column; margin:10px; color:rgba(200,100,20,0.75);"
 					v-for="one in apiTest" :key="one"
 				>
 					<li>
 						{{ one }}
 					</li>
-				</ul>-->
+				</ul>
 			</div>
 			
 			
