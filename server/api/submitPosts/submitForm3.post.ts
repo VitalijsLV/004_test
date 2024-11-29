@@ -5,8 +5,9 @@ import path from 'path'
 
 export default defineEventHandler( async (event) => {
 	if(event){
-	// here need security to check event and body data
-	
+		// here need security to check event and body data
+		// ...
+		
 		
 		const body = await readBody(event)
 		
@@ -24,6 +25,7 @@ export default defineEventHandler( async (event) => {
 				return
 			}
 			
+			//if readable file has length more than '0'
 			else if(fs.readFileSync(path.resolve("server", "api", "submitPosts", "file2.txt")).length > 0){
 				readFn()
 				writeFn()
@@ -40,7 +42,7 @@ export default defineEventHandler( async (event) => {
 					console.error("X Error reading file: ", err)
 					return
 				}
-				//console.log(data)
+				///////// console.log(data)
 			})
 
 
@@ -55,8 +57,6 @@ export default defineEventHandler( async (event) => {
 		
 		function writeFn(){
 			//write after read body(new object) from event
-			
-			//const body = await readBody(event)
 			
 			arrayWithDataObjects.push(body)
 			const objectsArrToJSON = JSON.stringify(arrayWithDataObjects)
