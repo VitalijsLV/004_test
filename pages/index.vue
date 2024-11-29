@@ -159,7 +159,12 @@
 		//const { data } = await $fetch('http://localhost:3000/api/submitPosts/submitForm3', {
 		const data = await $fetch('http://localhost:3000/api/submitPosts/submitForm3', {
 			method: 'post',
-			body: { id: idValue, offer2: offer2.value, phone2: phone2.value, domainBuyerName2: domainBuyerName2.value } 
+			body: { 
+				id: idValue, 
+				offer2: offer2.value, 
+				phone2: phone2.value, 
+				domainBuyerName2: domainBuyerName2.value 
+			}
 		})
 	}
 	

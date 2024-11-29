@@ -1,34 +1,77 @@
-// take date from post
+// read data, transform data, write data
 
 import fs from 'fs'
 import path from 'path'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler( async (event) => {
 	if(event){
 	// here need security to check event and body data
-		
-		// const body = await readBody(event)
-		// const text = JSON.stringify(body)
-		// fs.appendFile(path.resolve('server', 'api', 'submitPosts', 'file2.txt'), text, err => {
-			// if (err) {
-				// console.error(err);
-				// } else {
-				//////// done!
-			// }
-		// })
-		
-		
+	
 		
 		const body = await readBody(event)
-		const text = JSON.stringify(body)
 		
-		fs.writeFileSync(path.resolve('server', 'api', 'submitPosts', 'file2.txt'), text, {encoding: 'utf8', flags: 'a'}, err => {
-			if (err) {
-				console.error(err);
-			} else {
-				////////// file written successfully
+		
+		//new array for old and new objects
+		let arrayWithDataObjects = []
+		
+		
+		//check, is readable file exist?
+		if(fs.existsSync(path.resolve("server", "api", "submitPosts", "file2.txt"))){
+			
+			//check, is readable file is empty?
+			if(fs.readFileSync(path.resolve("server", "api", "submitPosts", "file2.txt")).length === 0){
+				writeFn()
+				return
 			}
-		})
+			
+			else if(fs.readFileSync(path.resolve("server", "api", "submitPosts", "file2.txt")).length > 0){
+				readFn()
+				writeFn()
+				return
+			}
+			
+		}
+		
+		
+		function readFn(){
+			//read
+			let getOldData = fs.readFileSync(path.resolve("server", "api", "submitPosts", "file2.txt"), "utf8", (err, data) => {
+				if(err){
+					console.error("X Error reading file: ", err)
+					return
+				}
+				//console.log(data)
+			})
+
+
+			//read old data and get data from JSON
+			let transformOldDataFromJSON = JSON.parse(getOldData)
+			
+			transformOldDataFromJSON.forEach((one, index)=>{
+				arrayWithDataObjects.push(one)
+			})
+		}
+		
+		
+		function writeFn(){
+			//write after read body(new object) from event
+			
+			//const body = await readBody(event)
+			
+			arrayWithDataObjects.push(body)
+			const objectsArrToJSON = JSON.stringify(arrayWithDataObjects)
+			
+			
+			//write
+			fs.writeFileSync(path.resolve('server', 'api', 'submitPosts', 'file2.txt'), objectsArrToJSON, {encoding: 'utf8', flags: 'a'}, err => {
+				if (err) {
+					console.error(err);
+				} else {
+					////////// file written successfully
+				}
+			})
+		}
+		
 	}
 })
 
