@@ -196,7 +196,7 @@
 						style="width:max-content; margin:0 10px;"
 						v-for="(value, key, i) in apiTest" :key="value"
 					>
-						{{ value }}
+						{{ key }} ==> {{ value }}
 					</li>
 				</ul>
 			</div>
