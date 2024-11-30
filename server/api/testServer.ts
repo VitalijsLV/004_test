@@ -24,21 +24,24 @@ export default defineEventHandler(async (event) => {
 	
 	
 	///////////read [POST] file and work with it
-	let filePostData = fs.readFileSync(path.resolve("server", "api", "submitPosts", "file2.txt"), "utf8", (err, data) => {
-		if(err){
-			console.error("X Error reading file: ", err)
-			return
-		}
-		// console.log(data)
-	})
+	let fileDataParse;
+	if(fs.existsSync(path.resolve("server", "api", "submitPosts", "file2.txt"))){
+		let filePostData = fs.readFileSync(path.resolve("server", "api", "submitPosts", "file2.txt"), "utf8", (err, data) => {
+			if(err){
+				console.error("X Error reading file: ", err)
+				return
+			}
+			// console.log(data)
+		})
+		fileDataParse = JSON.parse(filePostData)
+		//console.log(fileDataParse)
+	}
 	
-	let fileDataParse = JSON.parse(filePostData)
-	console.log(fileDataParse)
 	
 	return {
 		DATA_FROM_FILE: fileData,
 		DATA_FROM_FILE_regexed_spliced: xx_splice,
-		DATA_FROM_FILE_data_from_POST: fileDataParse[1].offer2,
+		DATA_FROM_FILE_data_from_POST: fileDataParse ?? 'no data',
 		is: '\$fetch(\'/api/testServer\')',
 		"server route": 'server/api/testServer.ts',
 		api: "api works!",

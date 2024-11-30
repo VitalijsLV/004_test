@@ -25,13 +25,17 @@ export default defineEventHandler( async (event) => {
 				return
 			}
 			
-			//if readable file has length more than '0'
+			//if readable file not empty //has length more than '0'
 			else if(fs.readFileSync(path.resolve("server", "api", "submitPosts", "file2.txt")).length > 0){
 				readFn()
 				writeFn()
 				return
 			}
 			
+		}
+		else if(!fs.existsSync(path.resolve("server", "api", "submitPosts", "file2.txt"))){
+			writeFn()
+			return
 		}
 		
 		

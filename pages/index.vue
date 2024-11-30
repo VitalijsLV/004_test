@@ -3,9 +3,6 @@
 	import { ref } from 'vue'
 	
 	
-	const apiTest = await $fetch('/api/testServer')
-	//console.log(apiTest)
-	
 	
 	/*
 	const dataSSE = ref('')
@@ -146,6 +143,10 @@
 	
 	///////
 	
+	let apiTest = ref(await $fetch('/api/testServer'))
+	//console.log(apiTest)
+	
+	
 	const offer2 = ref('')
 	const phone2 = ref('')
 	const domainBuyerName2 = ref('')
@@ -156,7 +157,6 @@
 
 	async function submitForm3() {
 		let idValue = Math.random() * (10 - 1) + 1
-		//const { data } = await $fetch('http://localhost:3000/api/submitPosts/submitForm3', {
 		const data = await $fetch('http://localhost:3000/api/submitPosts/submitForm3', {
 			method: 'post',
 			body: { 
@@ -166,6 +166,7 @@
 				domainBuyerName2: domainBuyerName2.value 
 			}
 		})
+		apiTest.value = await $fetch('/api/testServer')
 	}
 	
 </script>
@@ -416,8 +417,15 @@
 	.app-index-div{
 		background-color:white;
 	}
+		.div-info .div-info-ul2 li{
+			max-width:580px;
+		}
 		.div-info .div-info-ul2 li:nth-child(1), .div-info .div-info-ul2 li:nth-child(2){
 			color:rgba(155,100,100,0.85);
+		}
+		.div-info .div-info-ul2 li:nth-child(3){
+			color:rgba(240,220,20,0.75);
+			background-color:rgba(20,20,20,0.65);
 		}
 	
 	.div-wrapper--sse_data__price{
