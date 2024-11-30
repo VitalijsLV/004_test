@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
 	return {
 		DATA_FROM_FILE: fileData,
 		DATA_FROM_FILE_regexed_spliced: xx_splice,
-		DATA_FROM_FILE_data_from_POST: fileDataParse,
+		DATA_FROM_FILE_data_from_POST: fileDataParse[1].offer2,
 		is: '\$fetch(\'/api/testServer\')',
 		"server route": 'server/api/testServer.ts',
 		api: "api works!",

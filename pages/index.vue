@@ -174,7 +174,7 @@
 	<div class="app-index-div">
 		<div style="display:flex; flex-flow:wrap row; border:2px dotted lightgreen;">
 			
-			<div>
+			<div class="div-info">
 				<button @click="startSse">Start SSE</button>
 				<button @click="cancelSse">Cancel SSE</button>
 				
@@ -188,11 +188,14 @@
 				</ul>
 				
 				<ul 
-					style="display:flex; flew-flow:wrap column; margin:10px; color:rgba(200,100,20,0.75);"
-					v-for="one in apiTest" :key="one"
+					style="display:flex; flex-flow:wrap column; margin:10px; color:rgba(200,100,20,0.75);"
+					class="div-info-ul2"
 				>
-					<li>
-						{{ one }}
+					<li
+						style="width:max-content; margin:0 10px;"
+						v-for="(value, key, i) in apiTest" :key="value"
+					>
+						{{ value }}
 					</li>
 				</ul>
 			</div>
@@ -377,7 +380,7 @@
 				</section>
 				<hr style="width:95%;">
 				<section>
-					<p style="font-size:17px;">Bez pieredzes algotā darbā.</p>  
+					<p style="font-size:17px;">Bez pieredzes algotā programmētāja darbā.</p>  
 					<i><p>Sakarā ar miega problēmām, interesē darbs ar slīdošu jeb stingri nenoteiktu darba laika grafiku.</p></i> 
 				</section>
 				<section style="font-weight:bold;">
@@ -413,6 +416,10 @@
 	.app-index-div{
 		background-color:white;
 	}
+		.div-info .div-info-ul2 li:nth-child(1), .div-info .div-info-ul2 li:nth-child(2){
+			color:rgba(155,100,100,0.85);
+		}
+	
 	.div-wrapper--sse_data__price{
 		display:flex;
 		flex-flow:wrap row;
