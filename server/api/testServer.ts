@@ -7,6 +7,8 @@ import os from 'os'
 
 export default defineEventHandler(async (event) => {
 	
+	
+	
 	/////////// read file and work with it
 	let fileData = fs.readFileSync(path.resolve("textdoc1.txt"), "utf8", (err, data) => {
 		if(err){
